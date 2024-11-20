@@ -84,3 +84,23 @@ export const IntroItemText = styled.p`
   font-weight: 400;
   color: ${(props) => props.theme["base-text"]};
 `;
+
+export const TitleSectionProducts = styled.h2`
+  font-family: "Baloo 2", serif;
+
+  font-size: 2rem;
+  line-height: 2.1rem;
+  font-weight: 700;
+  color: ${(props) => props.theme["base-subtitle"]};
+  margin-bottom: 2.12rem;
+`;
+
+export const ContainerProducts = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 2rem;
+
+  @media ${media.tablet} {
+    justify-content: center;
+  }
+`;

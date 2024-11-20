@@ -9,5 +9,5 @@ export const LayoutContainer = styled.div`
   flex-direction: column;
 
   margin: 0 auto;
-  padding: 2.5rem;
+  padding: 0 2.5rem 2.5rem 2.5rem;
 `;
