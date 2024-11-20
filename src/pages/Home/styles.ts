@@ -63,7 +63,7 @@ const INTRO_ITEMS_COLORS = {
 } as const;
 
 interface IntroItemsProps {
-  itemsColors: keyof typeof INTRO_ITEMS_COLORS;
+  type: keyof typeof INTRO_ITEMS_COLORS;
 }
 
 export const IntroItem = styled.div<IntroItemsProps>`
@@ -74,7 +74,7 @@ export const IntroItem = styled.div<IntroItemsProps>`
   justify-content: center;
   align-items: center;
 
-  background: ${(props) => props.theme[INTRO_ITEMS_COLORS[props.itemsColors]]};
+  background: ${(props) => props.theme[INTRO_ITEMS_COLORS[props.type]]};
   border-radius: 50%;
 `;
 

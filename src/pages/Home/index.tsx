@@ -37,7 +37,7 @@ export function Home() {
 
           <ContainerIntroItems>
             <ContainerIntroItemsItem>
-              <IntroItem itemsColors="simpleAndSafe">
+              <IntroItem type="simpleAndSafe">
                 <ShoppingCart
                   size={16}
                   color={defaultTheme.background}
@@ -49,7 +49,7 @@ export function Home() {
             </ContainerIntroItemsItem>
 
             <ContainerIntroItemsItem>
-              <IntroItem itemsColors="coffeeIntact">
+              <IntroItem type="coffeeIntact">
                 <Package
                   size={16}
                   color={defaultTheme.background}
@@ -61,7 +61,7 @@ export function Home() {
             </ContainerIntroItemsItem>
 
             <ContainerIntroItemsItem>
-              <IntroItem itemsColors="fastAndDelivery">
+              <IntroItem type="fastAndDelivery">
                 <Timer
                   size={16}
                   color={defaultTheme.background}
@@ -73,7 +73,7 @@ export function Home() {
             </ContainerIntroItemsItem>
 
             <ContainerIntroItemsItem>
-              <IntroItem itemsColors="freshToYou">
+              <IntroItem type="freshToYou">
                 <Coffee
                   size={16}
                   color={defaultTheme.background}
