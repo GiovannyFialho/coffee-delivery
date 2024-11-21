@@ -27,7 +27,7 @@ interface ProductCardProps {
 export function ProductCard({ id, image, badges, title, subtitle, price }: ProductCardProps) {
   const { addProduct, removeProduct } = useContext(CartContext);
 
-  function handleUpdatePriceProduct(price: number) {
+  function handleUpdatePriceProduct(price: number, quantity: number) {
     if (price <= 0) {
       return removeProduct(id);
     }
@@ -38,7 +38,8 @@ export function ProductCard({ id, image, badges, title, subtitle, price }: Produ
       badges,
       title,
       subtitle,
-      price
+      price,
+      quantity
     };
 
     addProduct(product);
@@ -59,7 +60,10 @@ export function ProductCard({ id, image, badges, title, subtitle, price }: Produ
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
 
-      <PurchaseActions price={price} totalPrice={(price) => handleUpdatePriceProduct(price)} />
+      <PurchaseActions
+        price={price}
+        totalPrice={(price, quantity) => handleUpdatePriceProduct(price, quantity)}
+      />
     </Container>
   );
 }

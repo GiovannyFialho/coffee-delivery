@@ -25,7 +25,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
   }
 
-  button {
+  button, a, input {
     outline: none;
     box-shadow: none;
 

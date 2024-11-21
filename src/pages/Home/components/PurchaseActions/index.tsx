@@ -15,7 +15,7 @@ import {
 
 interface PurchaseActionsProps {
   price: number;
-  totalPrice: (price: number) => void;
+  totalPrice: (price: number, quantity: number) => void;
 }
 
 export function PurchaseActions({ price, totalPrice }: PurchaseActionsProps) {
@@ -29,7 +29,7 @@ export function PurchaseActions({ price, totalPrice }: PurchaseActionsProps) {
       setIsSubmitDisable(true);
     }
 
-    return totalPrice(total);
+    return totalPrice(total, quantity);
   }
 
   return (

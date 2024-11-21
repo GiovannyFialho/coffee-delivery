@@ -53,7 +53,7 @@ export const CartContainer = styled.div`
 `;
 
 interface ContainerQuantityProps {
-  visible: boolean;
+  visible: "show" | "no-show";
 }
 
 export const ContainerQuantity = styled.div<ContainerQuantityProps>`
@@ -73,8 +73,8 @@ export const ContainerQuantity = styled.div<ContainerQuantityProps>`
   border-radius: 50%;
   background: ${(props) => props.theme["yellow-dark"]};
 
-  transform: ${(props) => (props.visible ? "scale(1)" : "scale(0)")};
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  transform: ${(props) => (props.visible === "show" ? "scale(1)" : "scale(0)")};
+  opacity: ${(props) => (props.visible === "show" ? 1 : 0)};
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 `;
 

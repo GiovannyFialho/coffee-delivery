@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -84,10 +85,6 @@ export const ButtonBuy = styled.button`
   }
 
   &:not(:disabled):hover {
-    background-color: color-mix(
-      in oklab,
-      #000,
-      ${(prop) => prop.theme["purple-dark"]}
-    );
+    background: ${(props) => darken(0.1, props.theme["purple-dark"])};
   }
 `;
