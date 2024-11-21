@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { useState } from "react";
 
 import { defaultTheme } from "@/styles/theme/default";
 
@@ -11,23 +12,24 @@ import {
   Price,
   QuantityText
 } from "@/pages/Home/components/PurchaseActions/styles";
-import { useState } from "react";
 
 interface PurchaseActionsProps {
   price: number;
+  totalPrice: (price: number) => void;
 }
 
-export function PurchaseActions({ price }: PurchaseActionsProps) {
+export function PurchaseActions({ price, totalPrice }: PurchaseActionsProps) {
   const [quantity, setQuantity] = useState(0);
-
-  const isSubmitDisable = quantity <= 0;
+  const [isSubmitDisable, setIsSubmitDisable] = useState(true);
 
   function handleCalcFullPrice() {
     const total = quantity * price;
 
-    if (total) {
-      return total.toFixed(2);
+    if (quantity === 0) {
+      setIsSubmitDisable(true);
     }
+
+    return totalPrice(total);
   }
 
   return (
@@ -55,17 +57,18 @@ export function PurchaseActions({ price }: PurchaseActionsProps) {
           </ButtonActionQuantity>
 
           <QuantityText>{quantity}</QuantityText>
-          <ButtonActionQuantity onClick={() => setQuantity((prev) => prev + 1)}>
+          <ButtonActionQuantity
+            onClick={() => {
+              setQuantity((prev) => prev + 1);
+              setIsSubmitDisable(false);
+            }}
+          >
             <Plus size={14} color={defaultTheme.purple} />
           </ButtonActionQuantity>
         </ContainerQuantity>
 
         <ButtonBuy disabled={isSubmitDisable} onClick={handleCalcFullPrice}>
-          <ShoppingCart
-            size={20}
-            color={defaultTheme["base-card"]}
-            weight="fill"
-          />
+          <ShoppingCart size={20} color={defaultTheme["base-card"]} weight="fill" />
         </ButtonBuy>
       </ContainerBuy>
     </Container>

@@ -30,19 +30,14 @@ export function Home() {
             <Title>Encontre o café perfeito para qualquer hora do dia</Title>
 
             <Subtitle>
-              Com o Coffee Delivery você recebe seu café onde estiver, a
-              qualquer hora
+              Com o Coffee Delivery você recebe seu café onde estiver, a qualquer hora
             </Subtitle>
           </ContainerTitle>
 
           <ContainerIntroItems>
             <ContainerIntroItemsItem>
               <IntroItem type="simpleAndSafe">
-                <ShoppingCart
-                  size={16}
-                  color={defaultTheme.background}
-                  weight="fill"
-                />
+                <ShoppingCart size={16} color={defaultTheme.background} weight="fill" />
               </IntroItem>
 
               <IntroItemText>Compra simples e segura</IntroItemText>
@@ -50,11 +45,7 @@ export function Home() {
 
             <ContainerIntroItemsItem>
               <IntroItem type="coffeeIntact">
-                <Package
-                  size={16}
-                  color={defaultTheme.background}
-                  weight="fill"
-                />
+                <Package size={16} color={defaultTheme.background} weight="fill" />
               </IntroItem>
 
               <IntroItemText>Embalagem mantém o café intacto</IntroItemText>
@@ -62,11 +53,7 @@ export function Home() {
 
             <ContainerIntroItemsItem>
               <IntroItem type="fastAndDelivery">
-                <Timer
-                  size={16}
-                  color={defaultTheme.background}
-                  weight="fill"
-                />
+                <Timer size={16} color={defaultTheme.background} weight="fill" />
               </IntroItem>
 
               <IntroItemText>Embalagem mantém o café intacto</IntroItemText>
@@ -74,11 +61,7 @@ export function Home() {
 
             <ContainerIntroItemsItem>
               <IntroItem type="freshToYou">
-                <Coffee
-                  size={16}
-                  color={defaultTheme.background}
-                  weight="fill"
-                />
+                <Coffee size={16} color={defaultTheme.background} weight="fill" />
               </IntroItem>
 
               <IntroItemText>Embalagem mantém o café intacto</IntroItemText>
@@ -96,6 +79,7 @@ export function Home() {
           {products.map((product) => (
             <ProductCard
               key={product.id}
+              id={product.id}
               image={product.image}
               badges={product.badge}
               title={product.title}

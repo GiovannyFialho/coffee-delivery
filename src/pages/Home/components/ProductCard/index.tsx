@@ -1,3 +1,8 @@
+import { useContext } from "react";
+
+import { CartContext } from "@/contexts/CartContext";
+import { ProductProps } from "@/reducers/reducer";
+
 import { PurchaseActions } from "@/pages/Home/components/PurchaseActions";
 
 import {
@@ -11,6 +16,7 @@ import {
 } from "@/pages/Home/components/ProductCard/styles";
 
 interface ProductCardProps {
+  id: number;
   image: string;
   badges: string[];
   title: string;
@@ -18,13 +24,26 @@ interface ProductCardProps {
   price: number;
 }
 
-export function ProductCard({
-  image,
-  badges,
-  title,
-  subtitle,
-  price
-}: ProductCardProps) {
+export function ProductCard({ id, image, badges, title, subtitle, price }: ProductCardProps) {
+  const { addProduct, removeProduct } = useContext(CartContext);
+
+  function handleUpdatePriceProduct(price: number) {
+    if (price <= 0) {
+      return removeProduct(id);
+    }
+
+    const product: ProductProps = {
+      id,
+      image,
+      badges,
+      title,
+      subtitle,
+      price
+    };
+
+    addProduct(product);
+  }
+
   return (
     <Container>
       <Thumb src={image} alt="" />
@@ -40,7 +59,7 @@ export function ProductCard({
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
 
-      <PurchaseActions price={price} />
+      <PurchaseActions price={price} totalPrice={(price) => handleUpdatePriceProduct(price)} />
     </Container>
   );
 }

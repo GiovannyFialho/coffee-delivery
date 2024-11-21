@@ -1,17 +1,25 @@
 import { MapPin, ShoppingCart } from "phosphor-react";
+import { useContext } from "react";
+
+import { CartContext } from "@/contexts/CartContext";
 
 import coffeeDeliveryLogo from "@/assets/coffeeDeliveryLogo.svg";
 
+import { defaultTheme } from "@/styles/theme/default";
+
 import {
   CartContainer,
+  ContainerQuantity,
   HeaderContainer,
   HeaderContentDetail,
   LocationContainer,
-  LocationText
+  LocationText,
+  QuantityText
 } from "@/components/Header/styles";
-import { defaultTheme } from "@/styles/theme/default";
 
 export function Header() {
+  const { products } = useContext(CartContext);
+
   return (
     <HeaderContainer>
       <img src={coffeeDeliveryLogo} alt="" />
@@ -24,11 +32,11 @@ export function Header() {
         </LocationContainer>
 
         <CartContainer>
-          <ShoppingCart
-            size={22}
-            color={defaultTheme["yellow-dark"]}
-            weight="fill"
-          />
+          <ContainerQuantity visible={products.length > 0}>
+            <QuantityText>{products.length}</QuantityText>
+          </ContainerQuantity>
+
+          <ShoppingCart size={22} color={defaultTheme["yellow-dark"]} weight="fill" />
         </CartContainer>
       </HeaderContentDetail>
     </HeaderContainer>

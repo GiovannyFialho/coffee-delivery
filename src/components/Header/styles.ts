@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
 
   padding: 1.5rem 0;
   background: ${(props) => props.theme.background};
+  z-index: 10;
 `;
 
 export const HeaderContentDetail = styled.div`
@@ -39,6 +40,7 @@ export const LocationText = styled.p`
 `;
 
 export const CartContainer = styled.div`
+  position: relative;
   width: 2.3rem;
   height: 2.35rem;
 
@@ -48,4 +50,38 @@ export const CartContainer = styled.div`
 
   background: ${(props) => props.theme["yellow-light"]};
   border-radius: 6px;
+`;
+
+interface ContainerQuantityProps {
+  visible: boolean;
+}
+
+export const ContainerQuantity = styled.div<ContainerQuantityProps>`
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  width: max-content;
+  min-width: 1.25rem;
+  height: 1.25rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.1rem;
+  border-radius: 50%;
+  background: ${(props) => props.theme["yellow-dark"]};
+
+  transform: ${(props) => (props.visible ? "scale(1)" : "scale(0)")};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+`;
+
+export const QuantityText = styled.p`
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  font-weight: 700;
+
+  color: ${(props) => props.theme.white};
 `;

@@ -20,7 +20,7 @@ export const products = [
     subtitle: "O tradicional café feito com água quente e grãos moídos",
     badge: ["Tradicional"],
     image: expresso,
-    price: 9.9
+    price: 10
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const products = [
     subtitle: "Expresso diluído, menos intenso que o tradicional",
     badge: ["Tradicional"],
     image: expressoAmericano,
-    price: 9.9
+    price: 10.5
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ export const products = [
     subtitle: "Café expresso tradicional com espuma cremosa",
     badge: ["Tradicional"],
     image: expressoCremoso,
-    price: 9.9
+    price: 9.4
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ export const products = [
     subtitle: "Meio a meio de expresso tradicional com leite vaporizado",
     badge: ["Tradicional", "Com leite"],
     image: cafeComLeite,
-    price: 9.9
+    price: 12
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ export const products = [
     subtitle: "Bebida com canela feita de doses iguais de café, leite e espuma",
     badge: ["Tradicional", "Com leite"],
     image: capuccino,
-    price: 9.9
+    price: 10
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export const products = [
     subtitle: "Café expresso misturado com um pouco de leite quente e espuma",
     badge: ["Tradicional", "Com leite"],
     image: macchiato,
-    price: 9.9
+    price: 10
   },
   {
     id: 9,
@@ -84,7 +84,7 @@ export const products = [
     subtitle: "Café expresso com calda de chocolate, pouco leite e espuma",
     badge: ["Tradicional", "Com leite"],
     image: mochaccino,
-    price: 9.9
+    price: 11
   },
   {
     id: 10,
@@ -92,7 +92,7 @@ export const products = [
     subtitle: "Bebida feita com chocolate dissolvido no leite quente e café",
     badge: ["Especial", "Com leite"],
     image: chocolateQuente,
-    price: 9.9
+    price: 20
   },
   {
     id: 11,
@@ -100,7 +100,7 @@ export const products = [
     subtitle: "Drink gelado de café expresso com rum, creme de leite e hortelã",
     badge: ["Especial", "Alcoólico", "Gelado"],
     image: cubano,
-    price: 9.9
+    price: 50
   },
   {
     id: 12,
@@ -108,7 +108,7 @@ export const products = [
     subtitle: "Bebida adocicada preparada com café e leite de coco",
     badge: ["Especial"],
     image: havaiano,
-    price: 9.9
+    price: 20
   },
   {
     id: 13,
@@ -116,7 +116,7 @@ export const products = [
     subtitle: "Bebida preparada com grãos de café árabe e especiarias",
     badge: ["Especial"],
     image: arabe,
-    price: 9.9
+    price: 50
   },
   {
     id: 14,
@@ -124,6 +124,6 @@ export const products = [
     subtitle: "Bebida a base de café, uísque irlandês, açúcar e chantilly",
     badge: ["Especial", "Alcoólico"],
     image: irlandes,
-    price: 9.9
+    price: 50
   }
 ];
