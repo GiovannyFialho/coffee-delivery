@@ -18,21 +18,40 @@ interface ProductState {
 
 export function productReducer(state: ProductState, action: ProductAction) {
   switch (action.type) {
-    case ActionTypes.ADD_PRODUCT: {
-      const existingProduct = state.products.findIndex(
-        (product) => product.id === action.payload.product.id
-      );
-
-      if (existingProduct < 0) {
-        return produce(state, (draft) => {
-          draft.products.push(action.payload.product);
-        });
-      }
-
+    case ActionTypes.ADD_PRODUCT:
       return produce(state, (draft) => {
-        draft.products[existingProduct].price = action.payload.product.price;
+        const itemAlreadyAdded = draft.products.find(
+          (product) => product.id === action.payload.product.id
+        );
+
+        if (itemAlreadyAdded) {
+          itemAlreadyAdded.quantity += action.payload.product.quantity;
+        } else {
+          draft.products.push(action.payload.product);
+        }
       });
-    }
+
+    case ActionTypes.INCREMENT_PRODUCT_QUANTITY:
+      return produce(state, (draft) => {
+        const productToIncrement = draft.products.find(
+          (product) => product.id === action.payload.id
+        );
+
+        if (productToIncrement?.id) {
+          productToIncrement.quantity += 1;
+        }
+      });
+
+    case ActionTypes.DECREMENT_PRODUCT_QUANTITY:
+      return produce(state, (draft) => {
+        const productToDecrement = draft.products.find(
+          (product) => product.id === action.payload.id
+        );
+
+        if (productToDecrement?.id && productToDecrement.quantity > 1) {
+          productToDecrement.quantity -= 1;
+        }
+      });
 
     case ActionTypes.REMOVE_PRODUCT:
       return produce(state, (draft) => {

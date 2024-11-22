@@ -5,7 +5,7 @@ import { CartContext } from "@/contexts/CartContext";
 
 import { defaultTheme } from "@/styles/theme/default";
 
-import { QuantityProduct } from "@/pages/Checkout/components/form/QuantityProduct";
+import { QuantityProduct } from "@/components/QuantityProduct";
 
 import {
   ButtonRemoveProduct,
@@ -21,7 +21,16 @@ import {
 } from "@/pages/Checkout/components/form/SelectedCoffees/styles";
 
 export function SelectedCoffees() {
-  const { products, removeProduct } = useContext(CartContext);
+  const { products, removeProduct, incrementProductQuantity, decrementProductQuantity } =
+    useContext(CartContext);
+
+  function handleItemIncrement(id: number) {
+    incrementProductQuantity(id);
+  }
+
+  function handleItemDecrement(id: number) {
+    decrementProductQuantity(id);
+  }
 
   return (
     <Container>
@@ -35,7 +44,11 @@ export function SelectedCoffees() {
                 <h4>{product.title}</h4>
 
                 <ContainerActions>
-                  <QuantityProduct quantity={product.quantity} />
+                  <QuantityProduct
+                    quantity={product.quantity}
+                    incrementQuantity={() => handleItemIncrement(product.id)}
+                    decrementQuantity={() => handleItemDecrement(product.id)}
+                  />
 
                   <ButtonRemoveProduct type="button" onClick={() => removeProduct(product.id)}>
                     <Trash size={16} color={defaultTheme.purple} />

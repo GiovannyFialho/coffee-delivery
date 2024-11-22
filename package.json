@@ -11,6 +11,7 @@
     "initialize": "npm install && npm run dev"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "immer": "^10.1.1",
     "path": "^0.12.7",
     "phosphor-react": "^1.4.1",

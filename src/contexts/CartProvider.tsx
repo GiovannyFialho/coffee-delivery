@@ -1,7 +1,12 @@
 import { ReactNode, useReducer } from "react";
 
 import { CartContext } from "@/contexts/CartContext";
-import { addProductAction, removeProductAction } from "@/reducers/actions";
+import {
+  addProductAction,
+  decrementProductQuantityAction,
+  incrementProductQuantityAction,
+  removeProductAction
+} from "@/reducers/actions";
 import { type ProductProps, productReducer } from "@/reducers/reducer";
 
 interface CartContextProviderProps {
@@ -19,7 +24,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(addProductAction(product));
   }
 
-  function removeProduct(id: number) {
+  function incrementProductQuantity(id: ProductProps["id"]) {
+    dispatch(incrementProductQuantityAction(id));
+  }
+
+  function decrementProductQuantity(id: ProductProps["id"]) {
+    dispatch(decrementProductQuantityAction(id));
+  }
+
+  function removeProduct(id: ProductProps["id"]) {
     dispatch(removeProductAction(id));
   }
 
@@ -28,6 +41,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       value={{
         products,
         addProduct,
+        incrementProductQuantity,
+        decrementProductQuantity,
         removeProduct
       }}
     >

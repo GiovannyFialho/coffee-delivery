@@ -1,15 +1,22 @@
-import { useContext } from "react";
+import { CheckFat, ShoppingCart } from "@phosphor-icons/react";
+import { useContext, useState } from "react";
 
 import { CartContext } from "@/contexts/CartContext";
-import { ProductProps } from "@/reducers/reducer";
+// import { ProductProps } from "@/reducers/reducer";
 
-import { PurchaseActions } from "@/pages/Home/components/PurchaseActions";
+import { defaultTheme } from "@/styles/theme/default";
+
+import { QuantityProduct } from "@/components/QuantityProduct";
 
 import {
   Badge,
   BadgeText,
+  ButtonBuy,
   Container,
   ContainerBadge,
+  Control,
+  Order,
+  Price,
   Subtitle,
   Thumb,
   Title
@@ -25,24 +32,29 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ id, image, badges, title, subtitle, price }: ProductCardProps) {
-  const { addProduct, removeProduct } = useContext(CartContext);
+  const { addProduct } = useContext(CartContext);
 
-  function handleUpdatePriceProduct(price: number, quantity: number) {
-    if (price <= 0) {
-      return removeProduct(id);
+  const [quantity, setQuantity] = useState(1);
+  const [isClicked, setIsClicked] = useState(false);
+
+  function incrementQuantity() {
+    setQuantity((state) => state + 1);
+  }
+
+  function decrementQuantity() {
+    if (quantity > 1) {
+      setQuantity((state) => state - 1);
     }
+  }
 
-    const product: ProductProps = {
-      id,
-      image,
-      badges,
-      title,
-      subtitle,
-      price,
-      quantity
-    };
+  function handleAddItem() {
+    setIsClicked(true);
+    addProduct({ id, image, badges, title, subtitle, price, quantity });
+    setQuantity(1);
 
-    addProduct(product);
+    setTimeout(() => {
+      setIsClicked(false);
+    }, 1000);
   }
 
   return (
@@ -60,10 +72,33 @@ export function ProductCard({ id, image, badges, title, subtitle, price }: Produ
       <Title>{title}</Title>
       <Subtitle>{subtitle}</Subtitle>
 
-      <PurchaseActions
-        price={price}
-        totalPrice={(price, quantity) => handleUpdatePriceProduct(price, quantity)}
-      />
+      <Control>
+        <Price>
+          R$
+          <span>
+            {price.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            })}
+          </span>
+        </Price>
+
+        <Order>
+          <QuantityProduct
+            quantity={quantity}
+            incrementQuantity={incrementQuantity}
+            decrementQuantity={decrementQuantity}
+          />
+
+          <ButtonBuy onClick={handleAddItem} purchased={`${isClicked}`}>
+            {isClicked ? (
+              <CheckFat size={20} color={defaultTheme["base-card"]} weight="fill" />
+            ) : (
+              <ShoppingCart size={20} color={defaultTheme["base-card"]} weight="fill" />
+            )}
+          </ButtonBuy>
+        </Order>
+      </Control>
     </Container>
   );
 }
