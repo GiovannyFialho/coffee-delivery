@@ -1,10 +1,14 @@
 import { ProductProps } from "@/reducers/reducer";
+import { NavigateFunction } from "react-router-dom";
+
+import { OrderInfo } from "@/pages/Checkout";
 
 export enum ActionTypes {
   ADD_PRODUCT = "ADD_PRODUCT",
   REMOVE_PRODUCT = "REMOVE_PRODUCT",
   INCREMENT_PRODUCT_QUANTITY = "INCREMENT_PRODUCT_QUANTITY",
-  DECREMENT_PRODUCT_QUANTITY = "DECREMENT_PRODUCT_QUANTITY"
+  DECREMENT_PRODUCT_QUANTITY = "DECREMENT_PRODUCT_QUANTITY",
+  CHECKOUT_CART = "CHECKOUT_CART"
 }
 
 export interface AddNewProductAction {
@@ -26,11 +30,20 @@ export interface RemoveProductAction {
   payload: { id: ProductProps["id"] };
 }
 
+export interface CheckoutCart {
+  type: ActionTypes.CHECKOUT_CART;
+  payload: {
+    order: OrderInfo;
+    callback: NavigateFunction;
+  };
+}
+
 export type ProductAction =
   | AddNewProductAction
   | IncrementProductQuantityAction
   | DecrementProductQuantityAction
-  | RemoveProductAction;
+  | RemoveProductAction
+  | CheckoutCart;
 
 export function addProductAction(product: ProductProps): AddNewProductAction {
   return {
@@ -65,5 +78,18 @@ export function removeProductAction(id: ProductProps["id"]): RemoveProductAction
   return {
     type: ActionTypes.REMOVE_PRODUCT,
     payload: { id }
+  };
+}
+
+export function checkoutCartAction(
+  order: OrderInfo,
+  callback: NavigateFunction
+): CheckoutCart {
+  return {
+    type: ActionTypes.CHECKOUT_CART,
+    payload: {
+      order,
+      callback
+    }
   };
 }

@@ -9,7 +9,6 @@ import { QuantityProduct } from "@/components/QuantityProduct";
 
 import {
   ButtonRemoveProduct,
-  Container,
   ContainerActions,
   ContainerDetailPayment,
   ContainerProducts,
@@ -24,6 +23,11 @@ export function SelectedCoffees() {
   const { products, removeProduct, incrementProductQuantity, decrementProductQuantity } =
     useContext(CartContext);
 
+  const shippingPrice = 3.5;
+  const totalProducsPrice = products.reduce((previousValue, currentItem) => {
+    return (previousValue += currentItem.price * currentItem.quantity);
+  }, 0);
+
   function handleItemIncrement(id: number) {
     incrementProductQuantity(id);
   }
@@ -33,7 +37,7 @@ export function SelectedCoffees() {
   }
 
   return (
-    <Container>
+    <>
       <ContainerProducts>
         {products.map((product) => (
           <ContentProduct key={product.id}>
@@ -65,7 +69,37 @@ export function SelectedCoffees() {
         ))}
       </ContainerProducts>
 
-      <ContainerDetailPayment></ContainerDetailPayment>
-    </Container>
+      <ContainerDetailPayment>
+        <div>
+          <span>Total de itens</span>
+          <span>
+            {new Intl.NumberFormat("pt-br", {
+              currency: "BRL",
+              style: "currency"
+            }).format(totalProducsPrice)}
+          </span>
+        </div>
+
+        <div>
+          <span>Entrega</span>
+          <span>
+            {new Intl.NumberFormat("pt-br", {
+              currency: "BRL",
+              style: "currency"
+            }).format(shippingPrice)}
+          </span>
+        </div>
+
+        <div>
+          <span>Total</span>
+          <span>
+            {new Intl.NumberFormat("pt-br", {
+              currency: "BRL",
+              style: "currency"
+            }).format(totalProducsPrice + shippingPrice)}
+          </span>
+        </div>
+      </ContainerDetailPayment>
+    </>
   );
 }

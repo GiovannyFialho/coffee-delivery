@@ -2,6 +2,8 @@ import { produce } from "immer";
 
 import { ActionTypes, type ProductAction } from "@/reducers/actions";
 
+import { OrderInfo } from "@/pages/Checkout";
+
 export interface ProductProps {
   id: number;
   title: string;
@@ -12,8 +14,14 @@ export interface ProductProps {
   quantity: number;
 }
 
+export interface Order extends OrderInfo {
+  id: number;
+  items: ProductProps[];
+}
+
 interface ProductState {
   products: ProductProps[];
+  orders: Order[];
 }
 
 export function productReducer(state: ProductState, action: ProductAction) {
@@ -56,6 +64,19 @@ export function productReducer(state: ProductState, action: ProductAction) {
     case ActionTypes.REMOVE_PRODUCT:
       return produce(state, (draft) => {
         draft.products = draft.products.filter((product) => product.id !== action.payload.id);
+      });
+
+    case ActionTypes.CHECKOUT_CART:
+      return produce(state, (draft) => {
+        const newOrder = {
+          id: new Date().getTime(),
+          items: state.products,
+          ...action.payload.order
+        };
+        draft.orders.push(newOrder);
+        draft.products = [];
+
+        action.payload.callback(`/order/${newOrder.id}/success`);
       });
 
     default:

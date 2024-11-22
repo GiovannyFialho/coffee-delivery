@@ -1,21 +1,5 @@
 import styled from "styled-components";
 
-import { media } from "@/utils/media";
-
-export const Container = styled.div`
-  width: 100%;
-  min-width: 28rem;
-  height: auto;
-
-  padding: 2.5rem;
-  border-radius: 6px 44px;
-  background: ${(props) => props.theme["base-card"]};
-
-  @media ${media.tablet} {
-    min-width: 100%;
-  }
-`;
-
 export const ContainerProducts = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,4 +86,35 @@ export const ProductPrice = styled.p`
   color: ${(props) => props.theme["base-text"]};
 `;
 
-export const ContainerDetailPayment = styled.div``;
+export const ContainerDetailPayment = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span:first-child {
+      font-size: 0.875rem;
+      line-height: 130%;
+      font-weight: 400;
+    }
+
+    span:last-child {
+      font-size: 1rem;
+      line-height: 130%;
+      font-weight: 400;
+    }
+  }
+
+  div:last-child {
+    span {
+      font-size: 1.25rem;
+      line-height: 130%;
+      font-weight: 400;
+      font-weight: bold;
+    }
+  }
+`;
